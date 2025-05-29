@@ -198,6 +198,20 @@ impl<I: FallibleIterator> LookaheadBuffer<I> {
         let Self { queue, iter } = self;
         (iter, queue)
     }
+
+    /// Returns a reference to the queue.
+    #[inline]
+    #[must_use]
+    pub const fn queue(&self) -> &VecDeque<I::Item> {
+        &self.queue
+    }
+
+    /// Returns a mutable reference to the queue.
+    #[inline]
+    #[must_use]
+    pub const fn queue_mut(&mut self) -> &mut VecDeque<I::Item> {
+        &mut self.queue
+    }
     
     impl_lab!();
 }
@@ -237,6 +251,20 @@ impl<I: FallibleIterator, A: Allocator> LookaheadBuffer<I, A> {
     pub fn destructure(self) -> (I, VecDeque<I::Item, A>) {
         let Self { queue, iter } = self;
         (iter, queue)
+    }
+
+    /// Returns a reference to the queue.
+    #[inline]
+    #[must_use]
+    pub const fn queue(&self) -> &VecDeque<I::Item, A> {
+        &self.queue
+    }
+
+    /// Returns a mutable reference to the queue.
+    #[inline]
+    #[must_use]
+    pub const fn queue_mut(&mut self) -> &mut VecDeque<I::Item, A> {
+        &mut self.queue
     }
 }
 
