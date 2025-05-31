@@ -45,6 +45,17 @@ fn peek_multiple() {
     );
 }
 
+#[test]
+fn next() {
+    let mut lab = [1, 2, 3, 4, 5].into_iter().into_fallible().buffered();
+    assert_eq!(lab.next(), Ok(Some(1)));
+    assert_eq!(lab.next(), Ok(Some(2)));
+    assert_eq!(lab.next(), Ok(Some(3)));
+    assert_eq!(lab.next(), Ok(Some(4)));
+    assert_eq!(lab.next(), Ok(Some(5)));
+    assert_eq!(lab.next(), Ok(None));
+}
+
 #[cfg(feature = "allocator_api")]
 #[cfg(test)]
 mod alloc_tests {

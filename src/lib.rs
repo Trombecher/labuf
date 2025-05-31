@@ -170,8 +170,9 @@ macro_rules! impl_lab {
             self.next().map(|_| ())
         }
     
+        /// Consumes the next item, returning it.
         #[inline]
-        fn next(&mut self) -> Result<Option<I::Item>, I::Error> {
+        pub fn next(&mut self) -> Result<Option<I::Item>, I::Error> {
             match self.queue.pop_front() {
                 Some(token) => Ok(Some(token)),
                 None => self.iter.next(),
