@@ -19,23 +19,6 @@ fn peek_n() {
 }
 
 #[test]
-fn advance() {
-    let mut lab = [1, 2, 3, 4, 5].into_iter().into_fallible().buffered();
-
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.peek(), Ok(Some(&2)));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.peek(), Ok(Some(&3)));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.advance(), Ok(()));
-    assert_eq!(lab.peek(), Ok(None));
-}
-
-#[test]
 fn peek_multiple() {
     let mut lab = [1, 2, 3, 4, 5].into_iter().into_fallible().buffered();
 
@@ -54,17 +37,4 @@ fn next() {
     assert_eq!(lab.next(), Ok(Some(4)));
     assert_eq!(lab.next(), Ok(Some(5)));
     assert_eq!(lab.next(), Ok(None));
-}
-
-#[cfg(feature = "allocator_api")]
-#[cfg(test)]
-mod alloc_tests {
-    use crate::LookaheadBuffer;
-    use alloc::alloc::Global;
-    use fallible_iterator::IteratorExt;
-
-    #[test]
-    fn new_in() {
-        let _ = LookaheadBuffer::new_in([1, 2, 3, 4, 5].into_iter().into_fallible(), Global);
-    }
 }

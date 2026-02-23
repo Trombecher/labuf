@@ -1,15 +1,11 @@
 [package]
 name = "labuf"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2024"
 license = "MIT OR Apache-2.0"
-authors = ["Trombecher"]
-homepage = "https://trombecher.github.io/lab"
+authors = ["Tobias Hillemanns"]
 repository = "https://github.com/Trombecher/lab"
 categories = ["parsing", "data-structures", "compilers", "no-std"]
-
-[features]
-allocator_api = []
 
 [dependencies]
 fallible-iterator = "^0.3.0"
